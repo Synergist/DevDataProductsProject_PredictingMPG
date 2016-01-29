@@ -43,14 +43,16 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Shiny App - Predicting MPG</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <p>The shiny app is located at <a href="https://synergist.shinyapps.io/CourseProject_PredictMPG/">https://synergist.shinyapps.io/CourseProject_PredictMPG/</a></p>
+
+<p>This project involves predicting the MPG value of a car using some various other features about the car. We use the <code>mtcars</code> dataset to train a generalized linear model (GLM). The shiny app takes in user-inputted features via various widgets in the sidebar. It then reactively computes the predicted mpg value for those features by using the GLM. </p>
+
+<pre><code class="r">library(caret)
+mpg.model &lt;- train(mpg ~ disp + wt + hp + cyl + am, data = mtcars, method=&#39;glm&#39;)
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -58,33 +60,46 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Feature Selection</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">suppressMessages(library(caret))
-par(mfrow=c(1,2))
-mpg.model &lt;- train(mpg ~ ., data = mtcars, method=&#39;glm&#39;)
-varImp(mpg.model) #$importance
-</code></pre>
+    <p>We limit our small application to use only the following features, since they&#39;re most likely to be readily available to the end user:</p>
 
-<pre><code>## glm variable importance
-## 
-##      Overall
-## wt    100.00
-## am     60.33
-## qsec   54.83
-## hp     47.46
-## disp   34.52
-## drat   20.20
-## gear   17.92
-## carb    7.22
-## vs      2.39
-## cyl     0.00
-</code></pre>
+<ul>
+<li>&#39;cyl&#39; - the number of cylinders, ranging from 1 to 12</li>
+<li>&#39;disp&#39; - the engine displacement in cubic inches, ranging from 200 to 1000</li>
+<li>&#39;wt&#39; - the weight of the car in 1000 lbs, ranging from 1 to 6</li>
+<li>&#39;hp&#39; - the gross horsepower of the car, ranging from 100 to 1500 </li>
+<li>&#39;am&#39; - the transmission type, either 0 for &#39;Automatic&#39; or 1 for &#39;Manual&#39;</li>
+</ul>
 
-<pre><code class="r"># asd
-# confusionMatrix(mpg.model)
-</code></pre>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Shiny app display</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="/home/psingh/Pictures/Screenshot%20from%202016-01-29%2016:53:28.png" alt="The shiny app"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What next?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Some possible extensions to this small project would be:</p>
+
+<ul>
+<li>display graphs that show the interactions/relationships between the individual features and the outcome</li>
+<li>allow a user to request a recommendation for a car from the <code>mtcars</code> dataset by providing their desired mpg value</li>
+<li>allow a user to improve the model by supplying their own sample of (features, mpg value) observation</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -96,14 +111,26 @@ varImp(mpg.model) #$importance
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Shiny App - Predicting MPG'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Feature Selection'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Shiny app display'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='What next?'>
+         4
       </a>
     </li>
   </ul>
